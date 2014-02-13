@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+		<title>Sopinet - IES Gran Capitán - Taller básico de JQuery y Bootstrap - Demo1</title>
+		<!-- Desde: http://getbootstrap.com/getting-started/#download -->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+		<style>
+			body {
+				min-height: 2000px;
+				padding-top: 70px;
+			}
+		</style>
+	</head>
+	<body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Sopinet</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a id="mover-derecha" href="#">Derecha</a></li>
+            <li><a id="mover-izquierda" href="#">Izquierda</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">		
+			<div class="jumbotron">
+				<div class="row">
+					<div class="elemento1 col-xs-1">
+						<img src="imagenes/imagen_pecho.png" class="img-responsive"/>
+					</div>
+					<div class="elemento2 col-xs-1 col-xs-offset-10">
+						<img src="imagenes/sopinet_cuadradonotext_alta.png" class="img-responsive"/>
+					</div>
+				</div>
+				<div class="row" id="log-sopinet">
+					<div class="elemento1 col-xs-1">
+						col-md-offset-0
+					</div>
+					<div class="elemento2 col-xs-1 col-xs-offset-10">
+						col-md-offset-10
+					</div>
+				</div>
+			</div>
+		</div> <!-- /container -->
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			function print_log(off_el1, off_el2) {
+				// Usando selector child
+				$("#log-sopinet > .elemento1").html("col-xs-offset-"+off_el1);
+				$("#log-sopinet > .elemento2").html("col-xs-offset-"+off_el2);
+			}
+
+			/* DOM READY */
+			$(function() {
+				var off_el1 = 0;
+				var off_el2 = 10;
+				// Evento Click
+				$("#mover-derecha").click(function(){
+					if (off_el1 < 10) {
+						// Eliminamos etiqueta antigua - Remove Class
+						if (off_el1 > 0) $(".elemento1").removeClass("col-xs-offset-"+off_el1);
+						$(".elemento2").removeClass("col-xs-offset-"+off_el2);
+
+						// Añadimos nueva etiqueta Add class
+						off_el1++;
+						off_el2--;
+						if (off_el1 != 0) $(".elemento1").addClass("col-xs-offset-"+off_el1);
+						if (off_el2 != 0) $(".elemento2").addClass("col-xs-offset-"+off_el2);
+						print_log(off_el1, off_el2);
+					}
+				});
+
+				$("#mover-izquierda").click(function(){
+					if (off_el2 < 10) {
+						if (off_el1 > 0) $(".elemento1").removeClass("col-xs-offset-"+off_el1);
+						$(".elemento2").removeClass("col-xs-offset-"+off_el2);
+
+						off_el1--;
+						off_el2++;
+
+						if (off_el1 != 0) $(".elemento1").addClass("col-xs-offset-"+off_el1);
+						if (off_el2 != 0) $(".elemento2").addClass("col-xs-offset-"+off_el2);
+						print_log(off_el1, off_el2);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
